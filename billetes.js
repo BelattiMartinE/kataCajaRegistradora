@@ -16,11 +16,16 @@ const max50Elements = document.getElementById("maxBilletesDe50")
 const max20Elements = document.getElementById("maxBilletesDe20")
 const max10Elements = document.getElementById("maxBilletesDe10")
 
-max100Elements.value = "0";
-max50Elements.value = "0";
-max20Elements.value = "0";
-max10Elements.value = "0";
+dineroElement.placeholder = "monto a pagar"
+dineroElement.innerText = "0"
+max100Elements.placeholder = "billetes de 100 disponibles";
+max50Elements.placeholder = "billetes de 50 disponibles";
+max20Elements.placeholder = "billetes de 20 disponibles";
+max10Elements.placeholder = "billetes de 10 disponibles";
 resultado.innerHTML = ""
+
+
+
 
 function calculate() {
 
@@ -39,7 +44,7 @@ function calculate() {
 
     logResult(MaxBilletesDe100, MaxBilletesDe50, MaxBilletesDe20, MaxBilletesDe10, dinero, log);
 
-    resultado.innerText = "";
+    resultado.innerText = logs;
 
 }
 
