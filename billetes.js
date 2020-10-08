@@ -16,6 +16,17 @@ const max50Elements = document.getElementById("maxBilletesDe50")
 const max20Elements = document.getElementById("maxBilletesDe20")
 const max10Elements = document.getElementById("maxBilletesDe10")
 
+//Funcion addEventListener = "Bajo este tipo de evento hace esto"
+dineroElement.addEventListener("change", function (e) { 
+
+    console.log("Entra")
+    parse = (parseInt(dineroElement.innerText)) 
+    if (Number.isNaN(parse)) {
+        console.log("Esto anda" + parse)
+        dineroElement.innerText = "0";
+    }
+})
+
 dineroElement.placeholder = "monto a pagar"
 dineroElement.innerText = "0"
 max100Elements.placeholder = "billetes de 100 disponibles";
