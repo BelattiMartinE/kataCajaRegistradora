@@ -16,16 +16,28 @@ const max50Elements = document.getElementById("maxBilletesDe50")
 const max20Elements = document.getElementById("maxBilletesDe20")
 const max10Elements = document.getElementById("maxBilletesDe10")
 
-//Funcion addEventListener = "Bajo este tipo de evento hace esto"
-dineroElement.addEventListener("change", function (e) { 
 
-    console.log("Entra")
-    parse = (parseInt(dineroElement.innerText)) 
-    if (Number.isNaN(parse)) {
-        console.log("Esto anda" + parse)
-        dineroElement.innerText = "0";
-    }
-})
+function ensureNumberOnElement(element){
+    element.type = "number"
+    element.min = 0    
+}
+
+
+function hasValidValue(element)
+{
+    num = parseInt(element.value)
+    return ! Number.isNaN(num)
+}
+
+
+
+ensureNumberOnElement(dineroElement)
+ensureNumberOnElement(max100Elements)
+ensureNumberOnElement(max50Elements)
+ensureNumberOnElement(max20Elements)
+ensureNumberOnElement(max10Elements)
+
+
 
 dineroElement.placeholder = "monto a pagar"
 dineroElement.innerText = "0"
@@ -37,26 +49,38 @@ resultado.innerHTML = ""
 
 
 
+function zeroIfNaN(number)
+{
+    if(Number.isNaN(number))
+        return 0
+    return number;
+}
+
+
 
 function calculate() {
 
-    const dinero = parseInt(dineroElement.value, 10);
+    if(hasValidValue(dineroElement))
+    {   
 
-    const MaxBilletesDe100 = parseInt(max100Elements.value, 10);
-    const MaxBilletesDe50 =  parseInt(max50Elements.value, 10);
-    const MaxBilletesDe20 =  parseInt(max20Elements.value, 10);
-    const MaxBilletesDe10 =  parseInt(max10Elements.value, 10);
+        const dinero = parseInt(dineroElement.value, 10);
 
-    resultado.innerText = " "
+        const MaxBilletesDe100 = zeroIfNaN( parseInt(max100Elements.value, 10));
+        const MaxBilletesDe50 =  zeroIfNaN( parseInt(max50Elements.value, 10));
+        const MaxBilletesDe20 =  zeroIfNaN( parseInt(max20Elements.value, 10));
+        const MaxBilletesDe10 =  zeroIfNaN( parseInt(max10Elements.value, 10));
+
+        resultado.innerText = " "
+
+        logs = ""
+
+        log = x => logs += x + "\n";
+
+        logResult(MaxBilletesDe100, MaxBilletesDe50, MaxBilletesDe20, MaxBilletesDe10, dinero, log);
+
+        resultado.innerText = logs;
     
-    logs = ""
-
-    log = x => logs += x + "\n";
-
-    logResult(MaxBilletesDe100, MaxBilletesDe50, MaxBilletesDe20, MaxBilletesDe10, dinero, log);
-
-    resultado.innerText = logs;
-
+    }
 }
 
 function logResult(MaxBilletesDe100, MaxBilletesDe50, MaxBilletesDe20, MaxBilletesDe10, dinero, log) {
